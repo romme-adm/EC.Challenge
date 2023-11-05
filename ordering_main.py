@@ -1,13 +1,13 @@
 from EC_Challenge_Utils import ProcessInputs
 from EC_Challenge_Utils import DataInitializer
+from EC_Challenge_Ordering import Ordering
 import json
 
 if __name__ == '__main__':
     datainitializer = DataInitializer.DataInitializer("./EC_Challenge_DataSources","inputs.json")
     base_set  = json.loads(  datainitializer.load_json_entries_base() )
-    for i in base_set:
-        print (i)
-    inputs = ProcessInputs.ProcessInputsForOrdering("./entries_for_search.txt")
-    for i in inputs.processInputs():
-        print (i)
-    
+    process_inputs = ProcessInputs.ProcessInputsForOrdering("./entries_for_search.txt")
+    inputs = process_inputs.processInputs()
+    ordering = Ordering.Ordering(base_set)
+    ordering.set_hashes()
+    ordering.do_search(inputs)

@@ -1,4 +1,4 @@
-from EC_Challenge_PreProcesor import PreProcesor
+from EC_Challenge_ProcessCoincidences import PreProcesor
 from EC_Challenge_Tasks import TaskExecutor
 from EC_Challenge_Utils import ProcessInputs
 from EC_Challenge_Utils import DataInitializer

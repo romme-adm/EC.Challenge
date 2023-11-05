@@ -32,7 +32,7 @@ class ProcessInputsForOrdering:
         char_open_found = False
         expression = ''
         searches = []
-        for i in self.full_text.replace("(","{").replace(")","}"):
+        for i in  self.full_text.replace("(","{").replace(")","}"):
             if not char_open_found and i == '{':
                 expression +=i
                 char_open_found=True
@@ -43,5 +43,12 @@ class ProcessInputsForOrdering:
                 searches.append(expression)
                 expression =''
                 char_open_found = False
-        return searches
+        criteries = []
+        for i in searches:
+            criteries_array = i.replace("{",'').replace("}",'').split(',')
+            criteries.append({
+                criteries_array[0].replace("'",''):criteries_array[0].replace("'",''),
+                "op":criteries_array[1].replace("'",'').strip(),
+                "param":criteries_array[2]})
+        return criteries
     
