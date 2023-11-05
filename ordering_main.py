@@ -12,3 +12,4 @@ if __name__ == '__main__':
     ordering.set_hashes()
     ordering.pre_search(inputs)
     ordering.do_search()
+    ordering.order_by_priority()

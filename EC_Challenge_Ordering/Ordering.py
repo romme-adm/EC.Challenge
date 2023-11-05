@@ -32,15 +32,20 @@ class Ordering:
         position_prop=0
         position_op=1
         position_value = 2
-
+        self.coincidences_array=[]
         for i in (self.search_entries):
             index_pos = self.indexes[ i[position_prop] ]
-            print (i[position_prop])
+            #print (i[position_prop])
             for mtx in self.data:
                 achieve = self.decide_operacion(mtx.split("_")[index_pos],i[position_op],i[position_value] )
                 #print (mtx.split("_")[index_pos],i[position_op],i[position_value],achieve)
                 if achieve:
-                    print (self.data[mtx])
+                    self.coincidences_array.append(self.data_matrix[self.data[mtx]])
+
+
+    
+    def show_new_matrix():
+        print ("algo")
 
     
     def decide_operacion(self,value_of_mtx,op,param):
@@ -50,3 +55,16 @@ class Ordering:
             return  value_of_mtx <= param
         if op == ">=":
             return  value_of_mtx >= param
+    
+    def order_by_priority(self):
+        size_of_coincidences_array= len(self.coincidences_array)
+        swapped = False
+        for ca in range(size_of_coincidences_array):
+            intenal_range = (size_of_coincidences_array - ca - 1)
+            for internal_ca in range(0,intenal_range):     
+                if self.coincidences_array[internal_ca]["priority"] < self.coincidences_array[internal_ca + 1]["priority"]:
+                    self.coincidences_array[internal_ca+1],self.coincidences_array[internal_ca] = self.coincidences_array[internal_ca],self.coincidences_array[internal_ca+1]
+                    swapped = True
+            if not swapped:
+                return
+        return self.coincidences_array
