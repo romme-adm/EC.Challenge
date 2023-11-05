@@ -13,3 +13,4 @@ if __name__ == '__main__':
     ordering.pre_search(inputs)
     ordering.do_search()
     ordering.order_by_priority()
+    ordering.show_final_matrix()

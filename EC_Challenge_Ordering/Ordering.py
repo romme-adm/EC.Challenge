@@ -15,7 +15,7 @@ class Ordering:
     
     def set_hashes(self):
         self.data={}
-        position=0;
+        position=0
         for i in self.data_matrix:
             hash =  str(i["id"]) +"_"+str(i["weight"])+"_"+str(i["width"])+"_"+str(i["height"])+"_"+str(i["length"])+"_"+str(i["cost"])+"_"+str(i["priority"])
             self.data[hash] = position
@@ -33,20 +33,23 @@ class Ordering:
         position_op=1
         position_value = 2
         self.coincidences_array=[]
-        for i in (self.search_entries):
-            index_pos = self.indexes[ i[position_prop] ]
+        self.position_to_ignore = {}
+        self.final_matrix=[]
+        for search_entries_item in (self.search_entries):
+            index_pos = self.indexes[search_entries_item[position_prop] ]
             #print (i[position_prop])
             for mtx in self.data:
-                achieve = self.decide_operacion(mtx.split("_")[index_pos],i[position_op],i[position_value] )
-                #print (mtx.split("_")[index_pos],i[position_op],i[position_value],achieve)
+                achieve = self.decide_operacion(mtx.split("_")[index_pos],search_entries_item[position_op],search_entries_item[position_value] )
                 if achieve:
                     self.coincidences_array.append(self.data_matrix[self.data[mtx]])
+                    self.position_to_ignore[self.data[mtx]]=self.data[mtx]
 
-
-    
-    def show_new_matrix():
-        print ("algo")
-
+    def show_final_matrix(self):
+        for data_matrix_item in range (len(self.data_matrix)):
+            if self.position_to_ignore.get(data_matrix_item) is None:
+                self.final_matrix.append(self.data_matrix[data_matrix_item])
+        for fmItem in (self.final_matrix):
+            print (fmItem)
     
     def decide_operacion(self,value_of_mtx,op,param):
         if op == "=":
@@ -67,4 +70,4 @@ class Ordering:
                     swapped = True
             if not swapped:
                 return
-        return self.coincidences_array
+        self.final_matrix = self.coincidences_array
