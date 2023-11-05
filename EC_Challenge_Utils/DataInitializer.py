@@ -10,3 +10,8 @@ class DataInitializer:
             self.full_text = reader.read().replace(".","").replace(",","").replace("\n"," ")
         return self.full_text
     
+    def load_json_entries_base(self):
+        with open(  self.path + "/" + self.file_name ,'r') as reader:
+            self.full_text = reader.read()
+        return self.full_text
+    

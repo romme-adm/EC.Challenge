@@ -39,7 +39,7 @@ class Principal:
 
 
 if __name__ == '__main__':
-    inputs = ProcessInputs.ProcessInputs()
+    inputs = ProcessInputs.ProcessInputsForSearchCoincidences()
     inputs.loadJsonInput("./ec_config.json")
     Principal(inputs).run()
 
