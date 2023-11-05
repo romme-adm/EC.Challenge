@@ -49,6 +49,6 @@ class ProcessInputsForOrdering:
             criteries.append({
                 criteries_array[0].replace("'",''):criteries_array[0].replace("'",''),
                 "op":criteries_array[1].replace("'",'').strip(),
-                "param":criteries_array[2]})
+                "param":criteries_array[2].strip()})
         return criteries
     

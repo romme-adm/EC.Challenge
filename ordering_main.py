@@ -10,4 +10,5 @@ if __name__ == '__main__':
     inputs = process_inputs.processInputs()
     ordering = Ordering.Ordering(base_set)
     ordering.set_hashes()
-    ordering.do_search(inputs)
+    ordering.pre_search(inputs)
+    ordering.do_search()
