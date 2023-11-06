@@ -51,9 +51,10 @@ class Sorting:
                 self.position_to_ignore[trs_item_internal] = trs_item_internal
             return
         considered_index = {}
+        print (isTruesArray)
+        search_set_base = isTruesArray[len(isTruesArray)-1]
         for trs_item in range( len(isTruesArray)):
-            if trs_item == 0:
-                search_set_base = isTruesArray[trs_item]
+            if trs_item == len(isTruesArray)-1:
                 continue
             for trs_item_internal in search_set_base:
                 if isTruesArray[trs_item].get(trs_item_internal) is None:

@@ -1,4 +1,2 @@
-criteria2 = [
-('width', '>=', 2),
-('length', '<=', 20),
-]
+criteria2 = 
+[ ('id', '>=', 12366), ('priority','=',2) ]
