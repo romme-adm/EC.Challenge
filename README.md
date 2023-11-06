@@ -48,13 +48,17 @@
 
 
 ## Ejecucion
-- Ejercicio 1
-![Ejecucion ejercicio 1](/e11.png)`
 
-![Resultado ejercicio 1](/e12.png)`
+- Ejercicio 1
+![Ejecucion ejercicio 1](/e11.png)
+
+![Resultado ejercicio 1](/e12.png)
 
 
 - Ejercicio 2
-![Ejecucion ejercicio 1](/e21.png)`
+![Ejecucion ejercicio 1](/e21.png)
 
-![Resultado ejercicio 1](/e22.png)`
+![Resultado ejercicio 1](/e22.png)
+
+- Pruebas unitarias
+  ![Unit test](/e3.png)  
