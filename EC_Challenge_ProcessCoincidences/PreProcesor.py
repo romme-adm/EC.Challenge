@@ -1,3 +1,8 @@
+"""
+Clase principal para preprocesar texto,
+dividir nodos de trabajo (en caso de m=True)
+"""
+
 import math
 import time
 
@@ -27,8 +32,8 @@ class PreProcesor:
         memory_fragments.append( row_data )
         return memory_fragments
 
+    ##Se cuentan numero de coincidencias por nodo (todas las palabras)
     def process_payload(self,memory_row):
-        print ("init",time.time())
         index=0
         key_value_text = {}
         while index < (len( memory_row )):
@@ -39,13 +44,14 @@ class PreProcesor:
                 key_value_text[word_item] = (key_value_text[word_item]+1)
             index+=1
         self.elements_group.append( key_value_text )
-        print ("end",time.time())
         return 0
     
+    ##Se busca la palabra por particion despues de realizar el analisis de la información
+    ##Se suma las apariciones por nodo
     def do_search(self,text_to_searching):
         count=0
         start_time = time.time()
         for data_row in self.elements_group:
             if data_row.get( text_to_searching ) is not None:
                 count= count+data_row.get( text_to_searching )
-        print ("Se encontraron [", count, "] coincidencias en %s",(time.time() - start_time) )
+        print ("Se encontraron [", count, "] coincidencias en ",(time.time() - start_time) ,"sg" )

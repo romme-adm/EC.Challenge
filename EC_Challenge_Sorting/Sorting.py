@@ -1,6 +1,6 @@
-import json
 
-class Ordering:
+
+class Sorting:
     def __init__(self,data_matrix):
         self.data_matrix = data_matrix
         self.indexes = {
@@ -50,6 +50,7 @@ class Ordering:
                 self.final_matrix.append(self.data_matrix[data_matrix_item])
         for fmItem in (self.final_matrix):
             print (fmItem)
+        return self.final_matrix
     
     def decide_operacion(self,value_of_mtx,op,param):
         if op == "=":
@@ -58,9 +59,16 @@ class Ordering:
             return  value_of_mtx <= param
         if op == ">=":
             return  value_of_mtx >= param
+        if op == ">":
+            return  value_of_mtx > param
+        if op == "<":
+            return  value_of_mtx < param
     
     def order_by_priority(self):
         size_of_coincidences_array= len(self.coincidences_array)
+        if(size_of_coincidences_array == 1):
+                self.final_matrix = self.coincidences_array
+                return
         swapped = False
         for ca in range(size_of_coincidences_array):
             intenal_range = (size_of_coincidences_array - ca - 1)
