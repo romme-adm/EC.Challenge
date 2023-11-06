@@ -35,19 +35,40 @@ class Sorting:
         self.coincidences_array=[]
         self.position_to_ignore = {}
         self.final_matrix=[]
+        isTrues = {}
+        isTruesArray=[]
         for search_entries_item in (self.search_entries):
             index_pos = self.indexes[search_entries_item[position_prop] ]
-            #print (i[position_prop])
             for mtx in self.data:
                 achieve = self.decide_operacion(mtx.split("_")[index_pos],search_entries_item[position_op],search_entries_item[position_value] )
                 if achieve:
-                    self.coincidences_array.append(self.data_matrix[self.data[mtx]])
-                    self.position_to_ignore[self.data[mtx]]=self.data[mtx]
+                    isTrues[self.data[mtx]] = achieve
+            isTruesArray.append(isTrues)
+            isTrues={}
+        if len(isTruesArray)==1:
+            for trs_item_internal in isTruesArray[0]:
+                self.coincidences_array.append(self.data_matrix[trs_item_internal])
+                self.position_to_ignore[trs_item_internal] = trs_item_internal
+            return
+        considered_index = {}
+        for trs_item in range( len(isTruesArray)):
+            if trs_item == 0:
+                search_set_base = isTruesArray[trs_item]
+                continue
+            for trs_item_internal in search_set_base:
+                if isTruesArray[trs_item].get(trs_item_internal) is None:
+                    continue    
+                if considered_index.get(trs_item_internal) is not None:
+                    continue
+                considered_index[trs_item_internal]=trs_item_internal
+                self.coincidences_array.append(self.data_matrix[trs_item_internal])
+                self.position_to_ignore[trs_item_internal] = trs_item_internal
 
     def show_final_matrix(self):
         for data_matrix_item in range (len(self.data_matrix)):
             if self.position_to_ignore.get(data_matrix_item) is None:
                 self.final_matrix.append(self.data_matrix[data_matrix_item])
+                continue
         for fmItem in (self.final_matrix):
             print (fmItem)
         return self.final_matrix
@@ -77,5 +98,7 @@ class Sorting:
                     self.coincidences_array[internal_ca+1],self.coincidences_array[internal_ca] = self.coincidences_array[internal_ca],self.coincidences_array[internal_ca+1]
                     swapped = True
             if not swapped:
+                self.final_matrix = self.coincidences_array
                 return
         self.final_matrix = self.coincidences_array
+        
